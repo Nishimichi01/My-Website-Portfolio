@@ -220,7 +220,7 @@ body {
 .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     line-height: 1.2;
     background: linear-gradient(135deg, var(--text-bright) 0%, var(--primary-color) 100%);
     background-clip: text;
