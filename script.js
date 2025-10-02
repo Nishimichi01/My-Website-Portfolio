@@ -105,3 +105,43 @@ function createStarfield() {
 
 // Initialize starfield when page loads
 document.addEventListener('DOMContentLoaded', createStarfield);
+
+// Local Music Player Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('bgAudio');
+    const musicToggle = document.getElementById('musicToggle');
+    const volumeControl = document.getElementById('volumeControl');
+    const volumePercent = document.getElementById('volumePercent');
+
+    // Set initial volume
+    audio.volume = 0.7;
+
+    // Auto-play music on page load
+    audio.play().then(() => {
+        musicToggle.classList.add('playing');
+        musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+    }).catch(() => {
+        // If autoplay is blocked, show play icon
+        musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+    });
+
+    // Play/Pause toggle
+    musicToggle.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            musicToggle.classList.add('playing');
+            musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+            audio.pause();
+            musicToggle.classList.remove('playing');
+            musicToggle.innerHTML = '<i class="fas fa-music"></i>';
+        }
+    });
+
+    // Volume control
+    volumeControl.addEventListener('input', (e) => {
+        const volume = e.target.value / 100;
+        audio.volume = volume;
+        volumePercent.textContent = e.target.value + '%';
+    });
+});
