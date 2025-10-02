@@ -96,3 +96,33 @@ document.addEventListener('DOMContentLoaded', () => {
         volumePercent.textContent = e.target.value + '%';
     });
 });
+
+// Multi-language Greeting Switcher
+document.addEventListener('DOMContentLoaded', () => {
+    const greetingElement = document.getElementById('greeting');
+
+    const greetings = [
+        'こんにちは！',      // Japanese
+        'Hello!',            // English
+        '你好！',            // Chinese
+        'Hola!',             // Spanish
+        'Bonjour!',          // French
+        'Hallo!',            // German
+        'Ciao!',             // Italian
+        'Olá!',              // Portuguese
+        '안녕하세요!',        // Korean
+        'Привет!',           // Russian
+        'مرحبا!',            // Arabic
+        'नमस्ते!',           // Hindi
+        'Merhaba!',          // Turkish
+        'Hej!',              // Swedish
+        'Sawubona!'          // Zulu
+    ];
+
+    let currentIndex = 0;
+
+    greetingElement.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % greetings.length;
+        greetingElement.textContent = greetings[currentIndex];
+    });
+});
