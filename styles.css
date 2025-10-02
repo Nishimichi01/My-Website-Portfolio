@@ -443,6 +443,20 @@ body {
     box-shadow: 0 5px 20px rgba(129, 140, 248, 0.3);
 }
 
+/* Spotify Player */
+.spotify-player {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    background: var(--bg-card);
+    border: 1px solid rgba(129, 140, 248, 0.3);
+    border-radius: 12px;
+    padding: 0.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(129, 140, 248, 0.3);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
