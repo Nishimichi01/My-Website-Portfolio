@@ -513,4 +513,20 @@ body {
     .section-title {
         font-size: 2rem;
     }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .spotify-player {
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        width: auto;
+    }
+
+    .spotify-player iframe {
+        width: 100%;
+    }
 }
