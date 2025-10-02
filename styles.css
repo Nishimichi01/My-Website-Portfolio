@@ -17,7 +17,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
     color: var(--text-light);
     background: var(--bg-dark);
@@ -218,6 +218,7 @@ body {
 }
 
 .hero-title {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 3rem;
@@ -226,6 +227,7 @@ body {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
 }
 
 @keyframes glow {
@@ -393,12 +395,171 @@ body {
 
 /* About Section */
 .about-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
     font-size: 1.125rem;
-    line-height: 1.8;
+    line-height: 1.9;
     color: var(--text-light);
+}
+
+.about-content p {
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.about-content p::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.3rem;
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(129, 140, 248, 0.8);
+}
+
+.about-content p:hover {
+    padding-left: 2.5rem;
+    color: var(--text-bright);
+}
+
+.about-content p:hover::before {
+    background: var(--accent-color);
+    box-shadow: 0 0 25px rgba(251, 191, 36, 1);
+    transform: scale(1.3);
+}
+
+.about-content p:first-child::before {
+    background: var(--accent-color);
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+}
+
+.about-content p:last-child {
+    position: relative;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.about-content p:last-child::after {
+    content: '♪';
+    margin-left: 0.5rem;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+/* My Journey Timeline Section */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+    box-shadow: 0 0 20px rgba(129, 140, 248, 0.5);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.timeline-item:nth-child(odd) {
+    justify-content: flex-start;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 50%;
+    border: 4px solid var(--bg-dark);
+    box-shadow: 0 0 20px rgba(129, 140, 248, 0.8);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-marker {
+    transform: translateX(-50%) scale(1.3);
+    box-shadow: 0 0 30px rgba(251, 191, 36, 1);
+}
+
+.timeline-content {
+    width: 45%;
+    padding: 2rem;
+    background: rgba(30, 30, 60, 0.5);
+    border-radius: 12px;
+    border: 2px solid rgba(129, 140, 248, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::before {
+    right: -20px;
+    border-left-color: rgba(129, 140, 248, 0.3);
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: -20px;
+    border-right-color: rgba(129, 140, 248, 0.3);
+}
+
+.timeline-content:hover {
+    border-color: var(--accent-color);
+    background: rgba(30, 30, 60, 0.7);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(129, 140, 248, 0.3);
+}
+
+.timeline-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 1rem;
+}
+
+.timeline-content p {
+    color: var(--text-light);
+    line-height: 1.8;
+    font-size: 1rem;
 }
 
 /* Projects Section */
