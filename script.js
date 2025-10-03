@@ -151,6 +151,69 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Timeline Slider Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.getElementById('timelineSlider');
+    const slides = slider.querySelectorAll('.timeline-slide');
+    const prevBtn = document.getElementById('timelinePrev');
+    const nextBtn = document.getElementById('timelineNext');
+    const dotsContainer = document.getElementById('timelineDots');
+    const dots = dotsContainer.querySelectorAll('.dot');
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    // Show specific slide
+    function showSlide(index) {
+        // Hide all slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        // Show current slide
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+
+        // Update button states
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === totalSlides - 1;
+
+        currentSlide = index;
+    }
+
+    // Next slide
+    nextBtn.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+            showSlide(currentSlide + 1);
+        }
+    });
+
+    // Previous slide
+    prevBtn.addEventListener('click', () => {
+        if (currentSlide > 0) {
+            showSlide(currentSlide - 1);
+        }
+    });
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+        });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft' && currentSlide > 0) {
+            showSlide(currentSlide - 1);
+        } else if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+            showSlide(currentSlide + 1);
+        }
+    });
+
+    // Initialize first slide
+    showSlide(0);
+});
+
 // GitHub Projects Loader
 document.addEventListener('DOMContentLoaded', () => {
     const username = 'Nishimichi01';
