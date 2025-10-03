@@ -596,37 +596,167 @@ body {
     color: var(--text-light);
 }
 
-/* Skills Section */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.skill-category {
+/* Skills Section - Constellation Theme */
+.skills-subtitle {
     text-align: center;
-    padding: 1.5rem;
-    background: var(--bg-card);
-    border: 1px solid rgba(129, 140, 248, 0.2);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.skill-category:hover {
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-}
-
-.skill-category h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    color: var(--accent-color);
-}
-
-.skill-category p {
+    font-size: 1.1rem;
     color: var(--text-light);
+    margin-top: -2rem;
+    margin-bottom: 4rem;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.skills-constellation {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+    position: relative;
+}
+
+.skill-orbit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: rgba(30, 30, 60, 0.3);
+    border: 2px solid rgba(129, 140, 248, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+.skill-orbit:hover {
+    background: rgba(30, 30, 60, 0.5);
+    border-color: var(--primary-color);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(129, 140, 248, 0.3);
+}
+
+.skill-planet {
+    position: relative;
+    min-width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.planet-core {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--border-glow));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    box-shadow:
+        0 0 30px rgba(129, 140, 248, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.skill-orbit:hover .planet-core {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow:
+        0 0 50px rgba(129, 140, 248, 0.9),
+        inset 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.planet-ring {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border: 3px solid rgba(251, 191, 36, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(70deg);
+    animation: orbit-rotate 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes orbit-rotate {
+    from { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(0deg); }
+    to { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(360deg); }
+}
+
+.skill-orbit:hover .planet-ring {
+    border-color: rgba(251, 191, 36, 0.7);
+    animation-duration: 4s;
+}
+
+/* Different colors for different categories */
+.skill-planet[data-category="ai"] .planet-core {
+    background: linear-gradient(135deg, #818cf8, #6366f1);
+}
+
+.skill-planet[data-category="languages"] .planet-core {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+.skill-planet[data-category="web"] .planet-core {
+    background: linear-gradient(135deg, #34d399, #10b981);
+}
+
+.skill-planet[data-category="automation"] .planet-core {
+    background: linear-gradient(135deg, #f87171, #ef4444);
+}
+
+.skill-planet[data-category="data"] .planet-core {
+    background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+}
+
+.skill-planet[data-category="soft"] .planet-core {
+    background: linear-gradient(135deg, #fb923c, #f97316);
+}
+
+.skill-details {
+    flex: 1;
+}
+
+.skill-details h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--text-bright) 0%, var(--primary-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.skill-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(129, 140, 248, 0.15);
+    border: 1px solid rgba(129, 140, 248, 0.3);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.skill-tag:hover {
+    background: rgba(129, 140, 248, 0.3);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(129, 140, 248, 0.4);
 }
 
 /* Contact Section */
@@ -939,14 +1069,51 @@ body {
         padding: 1.5rem;
     }
 
-    /* Skills Grid Mobile */
-    .skills-grid {
+    /* Skills Constellation Mobile */
+    .skills-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .skills-constellation {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .skill-orbit {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
         gap: 1.5rem;
     }
 
-    .skill-category {
-        padding: 1.25rem;
+    .skill-planet {
+        min-width: 70px;
+        height: 70px;
+    }
+
+    .planet-core {
+        width: 70px;
+        height: 70px;
+        font-size: 1.6rem;
+    }
+
+    .planet-ring {
+        width: 95px;
+        height: 95px;
+    }
+
+    .skill-details h3 {
+        font-size: 1.2rem;
+    }
+
+    .skill-tags {
+        justify-content: center;
+    }
+
+    .skill-tag {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.9rem;
     }
 
     /* Contact Section Mobile */
@@ -1038,9 +1205,28 @@ body {
         font-size: 0.95rem;
     }
 
-    .project-card,
-    .skill-category {
+    .project-card {
         padding: 1.25rem;
+    }
+
+    .planet-core {
+        width: 60px;
+        height: 60px;
+        font-size: 1.4rem;
+    }
+
+    .planet-ring {
+        width: 85px;
+        height: 85px;
+    }
+
+    .skill-details h3 {
+        font-size: 1.1rem;
+    }
+
+    .skill-tag {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.75rem;
     }
 
     .volume-slider {
