@@ -57,6 +57,30 @@ function createStarfield() {
 // Initialize starfield when page loads
 document.addEventListener('DOMContentLoaded', createStarfield);
 
+// Scroll Animation Observer - Works for both scroll up and down
+document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all sections with scroll animations
+    const scrollSections = document.querySelectorAll('.scroll-section');
+    scrollSections.forEach(section => {
+        observer.observe(section);
+    });
+});
+
 // Local Music Player Functionality
 document.addEventListener('DOMContentLoaded', () => {
     const audio = document.getElementById('bgAudio');

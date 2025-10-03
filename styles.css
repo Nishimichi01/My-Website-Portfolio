@@ -1122,6 +1122,148 @@ body {
     box-shadow: 0 4px 15px rgba(129, 140, 248, 0.7);
 }
 
+/* Scroll Animations */
+.scroll-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.scroll-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+}
+
+.scroll-section.visible .scroll-reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-reveal-delay {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
+}
+
+.scroll-section.visible .scroll-reveal-delay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Timeline Scroll Animation */
+.scroll-timeline .timeline-item {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-timeline .timeline-item:nth-child(even) {
+    transform: translateX(50px);
+}
+
+.scroll-section.visible .scroll-timeline .timeline-item {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-section.visible .scroll-timeline .timeline-item:nth-child(1) {
+    transition-delay: 0.2s;
+}
+
+.scroll-section.visible .scroll-timeline .timeline-item:nth-child(2) {
+    transition-delay: 0.4s;
+}
+
+.scroll-section.visible .scroll-timeline .timeline-item:nth-child(3) {
+    transition-delay: 0.6s;
+}
+
+/* Stagger Animation for Skills and Projects */
+.scroll-stagger > * {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-section.visible .scroll-stagger > *:nth-child(1) {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition-delay: 0.1s;
+}
+
+.scroll-section.visible .scroll-stagger > *:nth-child(2) {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition-delay: 0.2s;
+}
+
+.scroll-section.visible .scroll-stagger > *:nth-child(3) {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition-delay: 0.3s;
+}
+
+.scroll-section.visible .scroll-stagger > *:nth-child(4) {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition-delay: 0.4s;
+}
+
+.scroll-section.visible .scroll-stagger > *:nth-child(5) {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition-delay: 0.5s;
+}
+
+.scroll-section.visible .scroll-stagger > *:nth-child(6) {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition-delay: 0.6s;
+}
+
+.scroll-section.visible .scroll-stagger > *:nth-child(n+7) {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    transition-delay: 0.7s;
+}
+
+/* About Section Paragraphs Stagger */
+.about-content p {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-section.visible .about-content p:nth-child(1) {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.3s;
+}
+
+.scroll-section.visible .about-content p:nth-child(2) {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.5s;
+}
+
+.scroll-section.visible .about-content p:nth-child(3) {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.7s;
+}
+
+.scroll-section.visible .about-content p:nth-child(4) {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.9s;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .container {
