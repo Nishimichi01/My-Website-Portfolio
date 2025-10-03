@@ -563,37 +563,230 @@ body {
 }
 
 /* Projects Section */
+.projects-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+    opacity: 0.8;
+    font-style: italic;
+}
+
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
 
 .project-card {
     background: var(--bg-card);
-    border: 1px solid rgba(129, 140, 248, 0.2);
-    border-radius: 12px;
-    padding: 2rem;
+    border: 2px solid rgba(129, 140, 248, 0.2);
+    border-radius: 16px;
+    padding: 0;
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover::before {
+    opacity: 1;
 }
 
 .project-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px);
     border-color: var(--primary-color);
-    box-shadow: 0 8px 30px rgba(129, 140, 248, 0.2);
-    background: rgba(129, 140, 248, 0.05);
+    box-shadow: 0 12px 35px rgba(129, 140, 248, 0.3);
+    background: rgba(30, 30, 60, 0.6);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.project-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-icon {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.project-links-header {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-links-header a {
+    color: var(--text-light);
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.project-links-header a:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.project-content {
+    padding: 0 1.5rem 1rem;
+    flex: 1;
 }
 
 .project-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
     color: var(--text-bright);
+    background: linear-gradient(135deg, var(--text-bright) 0%, var(--primary-color) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .project-content p {
     color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tech-tag {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: rgba(129, 140, 248, 0.15);
+    border: 1px solid rgba(129, 140, 248, 0.3);
+    border-radius: 16px;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+    background: rgba(129, 140, 248, 0.3);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem 1.5rem;
+    border-top: 1px solid rgba(129, 140, 248, 0.1);
+    font-size: 0.85rem;
+}
+
+.project-stats {
+    display: flex;
+    gap: 1rem;
+    color: var(--text-light);
+}
+
+.project-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.project-stats i {
+    color: var(--accent-color);
+}
+
+.project-updated {
+    color: var(--text-light);
+    opacity: 0.7;
+    font-size: 0.8rem;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    color: var(--text-light);
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(129, 140, 248, 0.2);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner p {
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+}
+
+/* Error and No Projects Messages */
+.error-message,
+.no-projects {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    color: var(--text-light);
+    text-align: center;
+}
+
+.error-message i,
+.no-projects i {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.error-message p,
+.no-projects p {
+    font-size: 1.1rem;
+    opacity: 0.8;
 }
 
 /* Skills Section - Constellation Theme */
@@ -1060,13 +1253,43 @@ body {
     }
 
     /* Projects Grid Mobile */
+    .projects-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
-    .project-card {
-        padding: 1.5rem;
+    .project-header {
+        padding: 1.25rem 1.25rem 0.5rem;
+    }
+
+    .project-icon {
+        font-size: 1.75rem;
+    }
+
+    .project-content {
+        padding: 0 1.25rem 0.75rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .project-content p {
+        font-size: 0.9rem;
+    }
+
+    .project-footer {
+        padding: 0.75rem 1.25rem 1.25rem;
+        font-size: 0.8rem;
+    }
+
+    .project-stats {
+        gap: 0.75rem;
     }
 
     /* Skills Constellation Mobile */
@@ -1205,8 +1428,17 @@ body {
         font-size: 0.95rem;
     }
 
-    .project-card {
-        padding: 1.25rem;
+    .project-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .project-content p {
+        font-size: 0.85rem;
+    }
+
+    .tech-tag {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.7rem;
     }
 
     .planet-core {

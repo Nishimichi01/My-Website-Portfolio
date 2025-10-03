@@ -126,3 +126,107 @@ document.addEventListener('DOMContentLoaded', () => {
         greetingElement.textContent = greetings[currentIndex];
     });
 });
+
+// GitHub Projects Loader
+document.addEventListener('DOMContentLoaded', () => {
+    const username = 'Nishimichi01';
+    const projectsGrid = document.getElementById('projectsGrid');
+
+    // Fetch repositories from GitHub API
+    async function fetchGitHubRepos() {
+        try {
+            const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch repositories');
+            }
+
+            const repos = await response.json();
+
+            // Filter out forked repos and sort by stars
+            const ownRepos = repos
+                .filter(repo => !repo.fork)
+                .sort((a, b) => b.stargazers_count - a.stargazers_count);
+
+            displayProjects(ownRepos);
+        } catch (error) {
+            console.error('Error fetching GitHub repos:', error);
+            projectsGrid.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Unable to load projects. Please check back later.</p>
+                </div>
+            `;
+        }
+    }
+
+    // Display projects in the grid
+    function displayProjects(repos) {
+        if (repos.length === 0) {
+            projectsGrid.innerHTML = `
+                <div class="no-projects">
+                    <i class="fas fa-folder-open"></i>
+                    <p>No projects available yet. Check back soon!</p>
+                </div>
+            `;
+            return;
+        }
+
+        projectsGrid.innerHTML = repos.map(repo => {
+            const description = repo.description || 'No description available';
+            const language = repo.language || 'Code';
+            const stars = repo.stargazers_count;
+            const forks = repo.forks_count;
+            const lastUpdated = new Date(repo.updated_at).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short'
+            });
+
+            return `
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                        <div class="project-links-header">
+                            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" title="View on GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            ${repo.homepage ? `
+                                <a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>${repo.name}</h3>
+                        <p>${description}</p>
+                        <div class="project-tech">
+                            ${repo.topics && repo.topics.length > 0 ?
+                                repo.topics.slice(0, 3).map(topic =>
+                                    `<span class="tech-tag">${topic}</span>`
+                                ).join('')
+                                : `<span class="tech-tag">${language}</span>`
+                            }
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-stats">
+                            <span title="Stars">
+                                <i class="fas fa-star"></i> ${stars}
+                            </span>
+                            <span title="Forks">
+                                <i class="fas fa-code-branch"></i> ${forks}
+                            </span>
+                        </div>
+                        <span class="project-updated">Updated ${lastUpdated}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Initialize
+    fetchGitHubRepos();
+});
