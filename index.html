@@ -236,8 +236,11 @@
             <h2 class="section-title scroll-reveal">Connect Across the Cosmos</h2>
             <div class="contact-content scroll-reveal-delay">
                 <p>Send a signal across the digital cosmos for collaborations or cosmic conversations</p>
-                <form name="contact" method="POST" data-netlify="true" action="/?success=true" class="contact-form">
+                <form name="contact" method="POST" netlify netlify-honeypot="bot-field" action="/?success=true" class="contact-form">
                     <input type="hidden" name="form-name" value="contact">
+                    <p style="display: none;">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
                     <div class="form-group">
                         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
                     </div>
