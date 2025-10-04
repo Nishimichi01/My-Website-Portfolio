@@ -317,3 +317,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize
     fetchGitHubRepos();
 });
+
+// Form submission success message
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+        // Create success message
+        const successMsg = document.createElement('div');
+        successMsg.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(129, 140, 248, 0.4);
+            z-index: 10000;
+            animation: slideIn 0.5s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+        `;
+        successMsg.innerHTML = '✓ Message sent successfully!';
+        document.body.appendChild(successMsg);
+
+        // Remove after 4 seconds
+        setTimeout(() => {
+            successMsg.style.animation = 'slideOut 0.5s ease';
+            setTimeout(() => successMsg.remove(), 500);
+        }, 4000);
+
+        // Clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+});
