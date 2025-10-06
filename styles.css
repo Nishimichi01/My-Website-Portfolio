@@ -1073,6 +1073,149 @@ body {
     margin-top: 1rem;
 }
 
+/* Social Section */
+.social-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.social-card {
+    background: rgba(30, 30, 60, 0.4);
+    border: 2px solid rgba(129, 140, 248, 0.2);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(129, 140, 248, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.social-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 50px rgba(129, 140, 248, 0.3);
+}
+
+.social-card:hover::before {
+    opacity: 1;
+}
+
+.social-icon-wrapper {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.social-icon-wrapper i {
+    font-size: 3rem;
+    color: white;
+    z-index: 2;
+    position: relative;
+}
+
+.icon-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.social-card:hover .social-icon-wrapper {
+    transform: scale(1.1);
+}
+
+.social-card:hover .icon-glow {
+    opacity: 1;
+    box-shadow: 0 0 40px currentColor;
+}
+
+.github-card .social-icon-wrapper {
+    background: linear-gradient(135deg, #333 0%, #24292e 100%);
+}
+
+.github-card:hover .icon-glow {
+    background: rgba(51, 51, 51, 0.5);
+}
+
+.linkedin-card .social-icon-wrapper {
+    background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
+}
+
+.linkedin-card:hover .icon-glow {
+    background: rgba(0, 119, 181, 0.5);
+}
+
+.twitter-card .social-icon-wrapper {
+    background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
+}
+
+.twitter-card:hover .icon-glow {
+    background: rgba(29, 161, 242, 0.5);
+}
+
+.email-card .social-icon-wrapper {
+    background: linear-gradient(135deg, #ea4335 0%, #d33a2c 100%);
+}
+
+.email-card:hover .icon-glow {
+    background: rgba(234, 67, 53, 0.5);
+}
+
+.facebook-card .social-icon-wrapper {
+    background: linear-gradient(135deg, #1877f2 0%, #0d65d9 100%);
+}
+
+.facebook-card:hover .icon-glow {
+    background: rgba(24, 119, 242, 0.5);
+}
+
+.social-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.social-card p {
+    font-size: 1rem;
+    color: rgba(165, 180, 252, 0.7);
+    margin: 0;
+}
+
 /* Footer */
 .footer {
     background: var(--bg-darker);
@@ -1442,6 +1585,33 @@ body {
     .about-content p {
         padding-left: 1.5rem;
         margin-bottom: 1.5rem;
+    }
+
+    /* Social Section Mobile */
+    .social-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .social-card {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .social-icon-wrapper {
+        width: 80px;
+        height: 80px;
+    }
+
+    .social-icon-wrapper i {
+        font-size: 2.5rem;
+    }
+
+    .social-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .social-card p {
+        font-size: 0.9rem;
     }
 
     /* Timeline Slider Mobile */
